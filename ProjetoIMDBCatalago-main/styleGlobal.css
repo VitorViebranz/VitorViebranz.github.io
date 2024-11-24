@@ -1,0 +1,327 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #262626;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #9D1717;
+    color: #EBE6E1;
+    text-align: center;
+    padding: 1rem;
+}
+
+h1 {
+    margin-bottom: 0.5rem;
+}
+
+nav {
+    background-color: #540905;
+    padding: 0.5rem;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #EBE6E1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ddd;
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    padding: 2rem;
+    flex-grow: 1;
+}
+
+/* Seções de Sobre (About) */
+.about-sections {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas fixas */
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.about-box {
+    background-color: #333;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.about-box h2 {
+    color: #EBE6E1;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.about-box p {
+    color: #dad7d5;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.about-box ul {
+    color: #dad7d5;
+    font-size: 1rem;
+    list-style-type: disc;
+    margin-left: 1.5rem;
+}
+
+.about-box ul li {
+    margin-bottom: 0.8rem;
+}
+
+/* Formulário de Contato */
+.contact-form {
+    background-color: #333;
+    border-radius: 5px;
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+}
+
+.contact-form h2 {
+    color: #EBE6E1;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-form label {
+    color: #EBE6E1;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #262626;
+    color: #EBE6E1;
+    font-size: 1rem;
+}
+
+.contact-form input[type="submit"] {
+    background-color: #9D1717;
+    border: none;
+    color: #EBE6E1;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form input[type="submit"]:hover {
+    background-color: #540905;
+}
+
+/* Seções de Categorias e Filmes */
+.category-section {
+    margin-bottom: 3rem;
+}
+
+.category-title {
+    color: #EBE6E1;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.movie-card {
+    background-color: #333;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.movie-info {
+    padding: 1rem;
+}
+
+.movie-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #EBE6E1;
+}
+
+.movie-description {
+    font-size: 0.9rem;
+    color: #dad7d5;
+}
+
+/* Rodapé e Redes Sociais */
+footer {
+    background-color: #333;
+    color: #EBE6E1;
+    text-align: center;
+    padding: 1rem;
+}
+
+.social-icons {
+    margin-bottom: 1rem;
+}
+
+.social-icons a {
+    color: #EBE6E1;
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: #ddd;
+}
+
+.social-icons i {
+    font-size: 2rem;
+}
+
+/* Avaliação css */
+
+.headeravaliação {
+    background-color: #9D1717;
+    color: #EBE6E1;
+    text-align: center;
+    padding: 1rem;
+}
+
+.displayestrelas {
+    display: center;
+    font-size: 50px;
+    margin-left: 42%;
+    margin-top: 10px;
+}
+
+.estrela {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    color: lightgray; 
+    margin-right: 32px; 
+    justify-content: center;
+}
+
+.estrela:before {
+    content: '★'; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: lightgray; 
+    transition: color 0.3s ease;
+}
+
+.displayestrelas:hover .estrela:before {
+    color: yellow; 
+}
+
+.displayestrelas .estrela:hover ~ .estrela:before {
+    color: lightgray;
+}
+
+.h1avaliação {
+    color: white;
+    position: center;
+    margin-top: 50px;
+    margin-left: 37%;
+    font-size: 25px;
+}
+
+/* descrição da opinião */
+
+.comentario {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #f5f5f5;
+    background-color: #333;
+    margin-top: 110px;
+    margin-right: 50%;
+    margin-left: -12%;
+    width: 500px;
+    transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+    border-color: #9D1717;
+    color: white;
+    outline: none;
+}
+
+.opinião {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 90px;
+    margin-right: 74%;
+    margin-left: 0;
+    font-size: 20px;
+    color: white;
+}
+
+/* Estilo do botão */
+.button {
+    background-color: #9D1717;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-right: 0;
+    margin-left: 60px;
+}
+
+button:hover {
+    background-color: green;
+}
+
+button:active {
+    background-color: green;
+}

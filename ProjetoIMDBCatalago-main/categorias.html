@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Cinema</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styleGlobal.css">
+</head>
+<body>
+    <header>
+        <h1>Categorias de Cinema</h1>
+        <p>Descubra os melhores filmes aqui!</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="categorias.html">Categorias</a></li>
+            <li><a href="sobre-nos.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="avaliação.html">Avalie</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="category-section">
+            <h2 class="category-title">Ação</h2>
+            <div class="movie-grid movie-grid-acao">
+            </div>
+        </section>
+
+        <section class="category-section">
+            <h2 class="category-title">Anime</h2>
+            <div class="movie-grid movie-grid-anime">
+            </div>
+        </section>        
+
+        <section class="category-section">
+            <h2 class="category-title">Comédia</h2>
+            <div class="movie-grid movie-grid-comedia">
+            </div>
+        </section>
+
+        <section class="category-section">
+            <h2 class="category-title">Drama</h2>
+            <div class="movie-grid movie-grid-drama">
+            </div>
+        </section>
+
+        <section class="category-section">
+            <h2 class="category-title">Terror</h2>
+            <div class="movie-grid movie-grid-terror">
+            </div>
+        </section>
+
+        <section class="category-section">
+            <h2 class="category-title">Romance</h2>
+            <div class="movie-grid movie-grid-romance">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>&copy; 2024 Catálogo de Cinema. Todos os direitos reservados.</p>
+        <p>Desenvolvido por Sua Empresa</p>
+    </footer>
+</body>
+
+<script>
+    function CarregarAnime(){
+        fetch('https://imdb.iamidiotareyoutoo.com/search?q=anime')
+        .then(response => {
+            if (response.ok) {
+            return response.json();
+            } else {
+            throw new Error('API request failed');
+            }
+        })
+        .then(data => {
+            const movieGrid = document.querySelector('.movie-grid-anime');
+            movieGrid.innerHTML = '';
+            
+            data.description.slice(0, 4).forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.classList.add('movie-card');
+
+                movieCard.innerHTML = `
+                    <a href="filme.html?IdIMDB=${movie["#IMDB_ID"]}">
+                        <img src="${movie["#IMG_POSTER"]}" alt="${movie["#TITLE"]}">
+                        <div class="movie-info">
+                            <h2 class="movie-title">${movie["#TITLE"]}</h2>
+                            <p class="movie-description">Ano: ${movie["#YEAR"]}</p>
+                            <p class="movie-description">Atores: ${movie["#ACTORS"]}</p>
+                            <p class="movie-description movie-description-IdIMDB">Id do IMDB: ${movie["#IMDB_ID"]}</p>
+                            <a href="${movie["#IMDB_URL"]}" target="_blank">Ver no IMDb</a>
+                        </div>
+                    </a>
+                `;
+
+                movieGrid.appendChild(movieCard);
+            });
+        })
+        .catch(error => {
+            console.log('ERRO NA CHAMADA', error);
+        }); 
+    }
+
+    function CarregarAcao(){
+        fetch('https://imdb.iamidiotareyoutoo.com/search?q=avengers')
+        .then(response => {
+            if (response.ok) {
+            return response.json();
+            } else {
+            throw new Error('API request failed');
+            }
+        })
+        .then(data => {
+            const movieGrid = document.querySelector('.movie-grid-acao');
+            movieGrid.innerHTML = '';
+            
+            data.description.slice(0, 4).forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.classList.add('movie-card');
+
+                movieCard.innerHTML = `
+                    <a href="filme.html?IdIMDB=${movie["#IMDB_ID"]}">
+                        <img src="${movie["#IMG_POSTER"]}" alt="${movie["#TITLE"]}">
+                        <div class="movie-info">
+                            <h2 class="movie-title">${movie["#TITLE"]}</h2>
+                            <p class="movie-description">Ano: ${movie["#YEAR"]}</p>
+                            <p class="movie-description">Atores: ${movie["#ACTORS"]}</p>
+                            <p class="movie-description movie-description-IdIMDB">Id do IMDB: ${movie["#IMDB_ID"]}</p>
+                            <a href="${movie["#IMDB_URL"]}" target="_blank">Ver no IMDb</a>
+                        </div>
+                    </a>
+                `;
+
+                movieGrid.appendChild(movieCard);
+            });
+        })
+        .catch(error => {
+            console.log('ERRO NA CHAMADA', error);
+        }); 
+    }
+
+    function CarregarComedia(){
+        fetch('https://imdb.iamidiotareyoutoo.com/search?q=comedy')
+        .then(response => {
+            if (response.ok) {
+            return response.json();
+            } else {
+            throw new Error('API request failed');
+            }
+        })
+        .then(data => {
+            const movieGrid = document.querySelector('.movie-grid-comedia');
+            movieGrid.innerHTML = '';
+            
+            data.description.slice(0, 4).forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.classList.add('movie-card');
+
+                movieCard.innerHTML = `
+                    <a href="filme.html?IdIMDB=${movie["#IMDB_ID"]}">
+                        <img src="${movie["#IMG_POSTER"]}" alt="${movie["#TITLE"]}">
+                        <div class="movie-info">
+                            <h2 class="movie-title">${movie["#TITLE"]}</h2>
+                            <p class="movie-description">Ano: ${movie["#YEAR"]}</p>
+                            <p class="movie-description">Atores: ${movie["#ACTORS"]}</p>
+                            <p class="movie-description movie-description-IdIMDB">Id do IMDB: ${movie["#IMDB_ID"]}</p>
+                            <a href="${movie["#IMDB_URL"]}" target="_blank">Ver no IMDb</a>
+                        </div>
+                    </a>
+                `;
+
+                movieGrid.appendChild(movieCard);
+            });
+        })
+        .catch(error => {
+            console.log('ERRO NA CHAMADA', error);
+        }); 
+    }
+
+    function CarregarDrama(){
+        fetch('https://imdb.iamidiotareyoutoo.com/search?q=sadness')
+        .then(response => {
+            if (response.ok) {
+            return response.json();
+            } else {
+            throw new Error('API request failed');
+            }
+        })
+        .then(data => {
+            const movieGrid = document.querySelector('.movie-grid-drama');
+            movieGrid.innerHTML = '';
+            
+            data.description.slice(0, 4).forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.classList.add('movie-card');
+
+                movieCard.innerHTML = `
+                    <a href="filme.html?IdIMDB=${movie["#IMDB_ID"]}">
+                        <img src="${movie["#IMG_POSTER"]}" alt="${movie["#TITLE"]}">
+                        <div class="movie-info">
+                            <h2 class="movie-title">${movie["#TITLE"]}</h2>
+                            <p class="movie-description">Ano: ${movie["#YEAR"]}</p>
+                            <p class="movie-description">Atores: ${movie["#ACTORS"]}</p>
+                            <p class="movie-description movie-description-IdIMDB">Id do IMDB: ${movie["#IMDB_ID"]}</p>
+                            <a href="${movie["#IMDB_URL"]}" target="_blank">Ver no IMDb</a>
+                        </div>
+                    </a>
+                `;
+
+                movieGrid.appendChild(movieCard);
+            });
+        })
+        .catch(error => {
+            console.log('ERRO NA CHAMADA', error);
+        }); 
+    }
+
+    function CarregarTerror(){
+        fetch('https://imdb.iamidiotareyoutoo.com/search?q=Terror')
+        .then(response => {
+            if (response.ok) {
+            return response.json();
+            } else {
+            throw new Error('API request failed');
+            }
+        })
+        .then(data => {
+            const movieGrid = document.querySelector('.movie-grid-terror');
+            movieGrid.innerHTML = '';
+            
+            data.description.slice(0, 4).forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.classList.add('movie-card');
+
+                movieCard.innerHTML = `
+                    <a href="filme.html?IdIMDB=${movie["#IMDB_ID"]}">
+                        <img src="${movie["#IMG_POSTER"]}" alt="${movie["#TITLE"]}">
+                        <div class="movie-info">
+                            <h2 class="movie-title">${movie["#TITLE"]}</h2>
+                            <p class="movie-description">Ano: ${movie["#YEAR"]}</p>
+                            <p class="movie-description">Atores: ${movie["#ACTORS"]}</p>
+                            <p class="movie-description movie-description-IdIMDB">Id do IMDB: ${movie["#IMDB_ID"]}</p>
+                            <a href="${movie["#IMDB_URL"]}" target="_blank">Ver no IMDb</a>
+                        </div>
+                    </a>
+                `;
+
+                movieGrid.appendChild(movieCard);
+            });
+        })
+        .catch(error => {
+            console.log('ERRO NA CHAMADA', error);
+        }); 
+    }
+
+    function CarregarRomance(){
+        fetch('https://imdb.iamidiotareyoutoo.com/search?q=Love')
+        .then(response => {
+            if (response.ok) {
+            return response.json();
+            } else {
+            throw new Error('API request failed');
+            }
+        })
+        .then(data => {
+            const movieGrid = document.querySelector('.movie-grid-romance');
+            movieGrid.innerHTML = '';
+            
+            data.description.slice(0, 4).forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.classList.add('movie-card');
+
+                movieCard.innerHTML = `
+                    <a href="filme.html?IdIMDB=${movie["#IMDB_ID"]}">
+                        <img src="${movie["#IMG_POSTER"]}" alt="${movie["#TITLE"]}">
+                        <div class="movie-info">
+                            <h2 class="movie-title">${movie["#TITLE"]}</h2>
+                            <p class="movie-description">Ano: ${movie["#YEAR"]}</p>
+                            <p class="movie-description">Atores: ${movie["#ACTORS"]}</p>
+                            <p class="movie-description movie-description-IdIMDB">Id do IMDB: ${movie["#IMDB_ID"]}</p>
+                            <a href="${movie["#IMDB_URL"]}" target="_blank">Ver no IMDb</a>
+                        </div>
+                    </a>
+                `;
+
+                movieGrid.appendChild(movieCard);
+            });
+        })
+        .catch(error => {
+            console.log('ERRO NA CHAMADA', error);
+        }); 
+    }
+
+   $(document).ready(function(){
+        CarregarAnime();
+
+        CarregarAcao();
+
+        CarregarComedia();
+
+        CarregarDrama();
+
+        CarregarTerror();
+
+        CarregarRomance();
+    });    
+
+</script>
+
+</html>
