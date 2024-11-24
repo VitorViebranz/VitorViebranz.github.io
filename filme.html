@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filme</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styleGlobal.css">
+</head>
+
+<body>
+    <header>
+        <h1>Catálogo de Cinema</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="categorias.html">Categorias</a></li>
+            <li><a href="sobre-nos.html">Sobre</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="avaliação.html">Avalie</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+
+
+    </main>
+    <footer>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook" class="fab fa-facebook"></a>
+            <a href="#" aria-label="Twitter" class="fab fa-twitter"></a>
+            <a href="#" aria-label="Instagram" class="fab fa-instagram"></a>
+            <a href="#" aria-label="YouTube" class="fab fa-youtube"></a>
+        </div>
+        <p>&copy; 2024 Catálogo de Cinema. Todos os direitos reservados.</p>
+        <p>Desenvolvido por Sua Empresa</p>
+    </footer>
+
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('IdIMDB');
+
+
+        const url = 'https://imdb.iamidiotareyoutoo.com/search?tt=' + id
+        console.log(url)
+        function CarregarDestaque() {
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('API request failed');
+                    }
+                })
+                .then(data => {
+                    console.log(data); // Verifique a estrutura de 'data'
+
+                    // Selecionando a área onde os detalhes do filme serão exibidos
+                    const movieGrid = document.querySelector('.container');
+                    if (!movieGrid) {
+                        console.error('.movie-grid não encontrado no DOM');
+                        return;
+                    }
+
+                    // Limpa o conteúdo existente
+                    movieGrid.innerHTML = '';
+
+                    const movie = data.short;
+                    const rating = data.short.aggregateRating;
+                    const lancamento = data.top.releaseYear;
+
+                    const categorias = movie["genre"];
+                    const atores = movie["actor"];
+
+                    // Função para abrir o trailer
+                    function abrirTrailer(url) {
+                        if (url) {
+                            window.open(url, '_blank');  // Abre o trailer em uma nova aba
+                        } else {
+                            alert("Trailer não disponível.");
+                        }
+                    }
+
+                    function chamaator(nomeator) {
+                        return `<li>${nomeator.name}</li>`;
+                    }
+
+                    function chamacategoria(categoria) {
+                        return `<span class="movie-badge">${categoria}</span>`;
+                    }
+
+                    movieGrid.innerHTML = `
+    <main class="container">
+        <div class="movie-details">
+            <div class="movie-poster">
+                <img src="${movie["image"]}" alt="${movie["name"]}">
+            </div>
+            <div class="movie-info">
+                <h2 class="movie-title">${movie["name"]}</h2>
+                <div class="movie-meta">
+                    <span class="movie-rating">${rating["ratingValue"]}</span>
+                    <span class="movie-badge">${lancamento["year"]}</span>
+                    ${categorias.map(categoria => chamacategoria(categoria)).join('')}
+                </div>
+                <div class="movie-details-grid">
+                    <div class="movie-detail-item release">${movie["datePublished"]}</div>
+                </div>
+                <p class="movie-description">${movie["description"]}</p>
+                <h3>Elenco Principal</h3>
+                <ul class="cast-list">
+                    ${atores.map(nomeator => chamaator(nomeator)).join('')}
+                </ul>
+                <div class="cta-buttons">
+                    <button class="cta-button secondary">Adicionar à Lista</button>
+                </div>
+            </div>
+        </div>
+    </main>
+`;
+                })
+                .catch(error => {
+                    console.log('ERRO NA CHAMADA', error);
+                });
+        }
+
+        $(document).ready(function () {
+            CarregarDestaque();
+        });
+
+    </script>
+
+
+</body>
+
+</html>
